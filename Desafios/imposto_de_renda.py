@@ -1,57 +1,70 @@
 def main():
-    renda = float(input("Digite sua renda em R$: "))
-
-    tributacao_vigente = calcular_tributacao_vigente(renda)
-    tributacao_corrigida = calcular_tributacao_corrigida(renda)
-    imposto_vigente = renda * (tributacao_vigente / 100)
-    imposto_corrigido = renda * (tributacao_corrigida / 100)
-
-    print("------------------------------------------------------------")
-    print(f"Sua Renda: R$ {renda:.2f}")
-    print("------------------------------------------------------------")
-    print("Porcentagem de Tributação | Valor em Reais | Estado da Tributação ")
+    renda = float(input("Digite sua renda: R$ "))
     
-    # Primeira linha
-    print(f"{tributacao_vigente:.2f}%", end=" ")
-    print("                    |", end=" ")
-    print(f"R$ {imposto_vigente:.2f}", end=" ")
-    print("       |", end=" ")
-    print("Vigente")
+    imposto_vigente = calcular_tributacao_vigente(renda)
+    imposto_corrigido = calcular_tributacao_corrigida(renda)
 
-    # Segunda linha
-    print(f"{tributacao_corrigida:.2f}%", end=" ")
-    print("                    |", end=" ")
-    print(f"R$ {imposto_corrigido:.2f}", end=" ")
-    print("       |", end=" ")
-    print("Corrigida")
-    print("------------------------------------------------------------")
-    
+    print("-" * 30)
+    print(f"Valor do IR vigente: R$ {imposto_vigente:.2f}")
+    print(f"Valor do IR corrigido: R$ {imposto_corrigido:.2f}")
+    print("-" * 30)
+
     
 def calcular_tributacao_vigente(renda):
-    if renda <= 1903.98:
-        return 0
-    elif renda <= 2826.65:
-        return 7.5
-    elif renda <= 3751.05:
-        return 15
-    elif renda <= 4664.68:
-        return 22.5
-    else:
-        return 27.5 
+    
+    imposto = 0.0
+
+    if renda > 4664.68:
+        renda_tributar = renda - 4664.69
+        renda -= renda_tributar
+        imposto += renda_tributar * (27.5/100)
+
+    if renda >= 3751.06:
+        renda_tributar = renda - 3751.06
+        renda -= renda_tributar
+        imposto += renda_tributar * (22.5/100)
+
+    if renda >= 2826.66:
+        renda_tributar = renda - 2826.66
+        renda -= renda_tributar
+        imposto += renda_tributar * (15/100)
+
+    if renda >= 1903.99:
+        renda_tributar = renda - 1903.99
+        renda -= renda_tributar
+        imposto += renda_tributar * (7.5/100)
+
+    
+    return imposto
 
 
 def calcular_tributacao_corrigida(renda):
-    if renda <= 3881.65:
-        return 0
-    elif renda <= 5714.11:
-        return 7.5
-    elif renda <= 7654.67:
-        return 15
-    elif renda <= 9564.42:
-        return 22.5
-    else:
-        return 27.5 
+    
+    imposto = 0.0
+
+    if renda >= 9564.42:
+        renda_tributar = renda - 9564.42
+        renda -= renda_tributar
+        imposto += renda_tributar * (27.5/100)
+
+    if renda >= 7654.68:
+        renda_tributar = renda - 7654.68
+        renda -= renda_tributar
+        imposto += renda_tributar * (22.5/100)
+
+    if renda >= 5714.12:
+        renda_tributar = renda - 5714.12
+        renda -= renda_tributar
+        imposto += renda_tributar * (15/100)
+
+    if renda >= 3881.66:
+        renda_tributar = renda - 3881.66
+        renda -= renda_tributar
+        imposto += renda_tributar * (7.5/100)
 
 
+    return imposto
 
-main()
+
+if __name__ == "__main__":
+    main()
