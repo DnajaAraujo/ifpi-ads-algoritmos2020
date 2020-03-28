@@ -42,7 +42,7 @@ def calcular_tributacao_corrigida(renda):
     
     imposto = 0.0
 
-    if renda >= 9564.42:
+    if renda > 9564.42:
         renda_tributar = renda - 9564.42
         renda -= renda_tributar
         imposto += renda_tributar * (27.5/100)
