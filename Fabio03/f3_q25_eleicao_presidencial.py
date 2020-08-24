@@ -27,13 +27,13 @@ def conta_votos(numero_eleitores):
 
         contador += 1
 
-    print('-'*20)
+    print('-'*30)
     print('1° Candidado: ', candidato1)
     print('2° Candidado: ', candidato2)
     print('3° Candidado: ', candidato3)
     print('Votos nulos: ', votos_nulos)
     print('Votos em branco: ', votos_branco)
-    print('-'*20)
+    print('-'*30)
 
     venceu_eleicao(candidato1, candidato2, candidato3)
 
@@ -55,7 +55,7 @@ def venceu_eleicao(c1, c2, c3):
     else:
         print('Nenhum candidato venceu.')
     
-    print('-'*20)
+    print('-'*30)
 
 
 main()
