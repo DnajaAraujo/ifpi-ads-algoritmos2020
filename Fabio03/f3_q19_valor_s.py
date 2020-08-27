@@ -25,7 +25,7 @@ def calcula_s(numero):
         resultado += fracao
         contador += 1
         
-    print('resultado: {:.2f}'.format(resultado))
+    print('resultado: {}'.format(resultado))
 
 
 main()
