@@ -1,32 +1,37 @@
 def main():
-    palavra = input('Digite uma palavra: ')
+    mensagem = input('Digite a mensagem: ')
     chave = int(input('Digite um número: '))
 
-    rotate_word(palavra, chave)
+    rotate_word(mensagem, chave)
 
 
-def rotate_word(palavra, chave):
+def rotate_word(mensagem, chave):
 
     if valida_chave(chave):
-        nova_palavra = palavra.lower()
+        nova_mensagem = mensagem.lower()
 
         cifrada = ''
-        for letra in nova_palavra:
-            indice = ord(letra)
-            novo_indice = indice + chave
+        for caractere in nova_mensagem:
+            indice = ord(caractere)
 
-            if novo_indice > 122:
-                novo_indice -= 122
-                novo_indice += 96
+            if (indice >= 65 and indice <= 90) or (indice >= 97 and indice <= 122):
+                novo_indice = indice + chave
+
+                if novo_indice > 122:
+                    novo_indice -= 122
+                    novo_indice += 96
+                
+                if novo_indice < 97:
+                    novo_indice += 122
+                    novo_indice -= 96
             
-            if novo_indice < 97:
-                novo_indice += 122
-                novo_indice -= 96
+            else:
+                novo_indice = indice
+        
+            novo_caractere = chr(novo_indice)
+            cifrada += novo_caractere
 
-            nova_letra = chr((novo_indice))
-            cifrada += nova_letra
-
-        mostra_resultado(palavra, cifrada)
+        mostra_resultado(mensagem, cifrada)
 
     else:
         print('Chave inválida!')
@@ -39,8 +44,8 @@ def valida_chave(chave):
         return True
 
 
-def mostra_resultado(palavra, cifrada):
-    if palavra == palavra.upper():
+def mostra_resultado(mensagem, cifrada):
+    if mensagem == mensagem.upper():
         print(cifrada.upper())
     else:
         print(cifrada)
