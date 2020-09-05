@@ -25,7 +25,7 @@ def rotate_message(linhas):
                 inverte_mensagem(nova_mensagem)
             
             else:
-                print('Número de carácteres inválido!')
+                print('Número de caracteres inválido!')
     
     else:
         print('Número de linhas inválido!')
