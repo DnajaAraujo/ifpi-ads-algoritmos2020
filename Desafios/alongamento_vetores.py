@@ -4,38 +4,62 @@ def main():
 
 
 def cria_lista(qtd_num):
-    lista = []
+    lista = [-1] * qtd_num
+    print(f'Lista: {lista} \n')
+
     for i in range(qtd_num):
         num = int(input('Digite um número: '))
-        lista.append(num)
+        lista[i] = num
 
     if qtd_num > 0:
-        calcula_tipo_numero(lista)
-        calcula_novos_numeros(lista)
+        conta_tipo_numero(lista)
+        transforma_numeros(lista)
     else:
         print('Valor inválido!')
 
 
-def calcula_tipo_numero(lista):
-    pares, impares = 0, 0
-    positivos, negativos = 0, 0
+def conta_tipo_numero(lista):
+    pares = conta_pares(lista)
+    impares = conta_impares(lista)
+    positivos = conta_positivos(lista)
+    negativos = conta_negativos(lista)
 
+    mostra_numeros(pares, impares, positivos, negativos, lista)
+    
+
+def conta_pares(lista):
+    qtd = 0
     for num in lista:
         if num % 2 == 0:
-            pares += 1
-        else:
-            impares += 1
-        
+            qtd += 1
+    return qtd
+
+
+def conta_impares(lista):
+    qtd = 0
+    for num in lista:
+        if num % 2 != 0:
+            qtd += 1
+    return qtd
+
+
+def conta_positivos(lista):
+    qtd = 0
     for num in lista:
         if num > 0:
-            positivos += 1
-        elif num < 0:
-            negativos += 1
+            qtd += 1
+    return qtd
 
-    mostra_numeros(pares, impares, positivos, negativos)
-  
 
-def calcula_novos_numeros(lista):
+def conta_negativos(lista):
+    qtd = 0
+    for num in lista:
+        if num < 0:
+            qtd += 1
+    return qtd
+
+
+def transforma_numeros(lista):
     for i in range(len(lista)):
         num = lista[i]
 
@@ -44,19 +68,20 @@ def calcula_novos_numeros(lista):
         elif num < 0:
             lista[i] = num/2
 
-    calcula_tipo_numero(lista)
+    conta_tipo_numero(lista)
     calcula_mostra_media(lista)
 
 
-def mostra_numeros(pares, impares, positivos, negativos):
+def mostra_numeros(pares, impares, positivos, negativos, lista):
     tabela = '\n>> Quantos Números são: \n' \
             + f'Pares: {pares} \n' \
             + f'Ímpares: {impares} \n' \
             + f'Positivos: {positivos} \n' \
             + f'Negativos: {negativos}'
-
+             
     print(tabela)
-
+    print(f'Lista: {lista} \n')
+    
 
 def calcula_mostra_media(lista):
     soma = 0
