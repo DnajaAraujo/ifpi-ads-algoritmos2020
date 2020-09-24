@@ -80,7 +80,7 @@ def mostra_numeros(pares, impares, positivos, negativos, lista):
             + f'Negativos: {negativos}'
              
     print(tabela)
-    print(f'Lista: {lista} \n')
+    print(f'Lista: {lista}')
     
 
 def calcula_mostra_media(lista):
