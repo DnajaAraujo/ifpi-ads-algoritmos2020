@@ -32,7 +32,7 @@ def main():
 
 
 def tela_principal():
-    menu = '***** App Jobs Cell*****\n'
+    menu = '\n***** App Jobs Cell*****\n'
     menu += '1 - Cadastrar novo celular\n'
     menu += '2 - Listar todos os celulares\n'
     menu += '3 - Pesquisar celulares por nome\n'
@@ -63,7 +63,7 @@ def finalizar(nome_arquivo, celulares):
 
 
 def novo_celular():
-    print('criando novo celular...\n')
+    print('Criando novo celular...\n')
     
     # obter dados
     nome = input('Nome: ')
@@ -100,15 +100,14 @@ def encontra_celular(buscador, celulares):
     lista = []
     
     busca1 = buscador.upper()
-    busca2 = buscador.lower()
     codigo = 0
 
     for celular in celulares:
-        if busca1 in celular['nome'].upper() or busca2 in celular['nome'].lower():
+        if busca1 in celular['nome'].upper():
             codigo += 1
             lista.append([codigo, celular['nome'], celular['marca']])
         
-        elif busca1 in celular['marca'].upper() or busca2 in celular['marca'].lower():
+        elif busca1 in celular['marca'].upper():
             codigo += 1
             lista.append([codigo, celular['nome'], celular['marca']])
 
@@ -116,11 +115,11 @@ def encontra_celular(buscador, celulares):
 
 
 def mostra_resultados_pesquisa(lista):
-    print(f'\nFoi encontrado {len(lista)} celulares')
+    print(f'\nFoi encontrado {len(lista)} celulares\n')
 
     if len(lista) > 0:
         for item in lista:
-            print('\nCódigo:', item[0])
+            print('Código:', item[0])
             print('Nome:', item[1])
             print('Marca:', item[2])
             print('-'*30)
@@ -132,13 +131,16 @@ def encontra_celular_especifico(buscador, celulares):
     cod = int(input('Digite o código do celular que deseja acessar: '))
     lista = encontra_celular(buscador, celulares)
 
-    if cod >= 1:
+    if cod >= 1 and cod <= len(lista):
         for celular in celulares:
             if (lista[cod-1][1] == celular['nome']) and (lista[cod-1][2] == celular['marca']):
                 return celular
-        
+    else:
+        print('\nCódigo inválido!')
+        return False
 
-def tela_especifica():  # Erro!
+
+def tela_especifica():
     menu = '\n***** Menu de Acesso Específico *****\n'
     menu += '1 - Mostrar detalhes do celular\n'
     menu += '2 - Remover celular\n'
@@ -153,23 +155,26 @@ def tela_especifica():  # Erro!
 def main2(nome_arquivo, celulares, buscador):
     menu = tela_especifica()
     celular_especifico = encontra_celular_especifico(buscador, celulares)
-    opcao = int(input(menu))
 
-    while opcao != 0:
-        if opcao == 1:
-            mostra_detalhes(celular_especifico, celulares)
+    if celular_especifico != False:
+        opcao = int(input(menu))
 
-        elif opcao == 2:
-            remove_celular(nome_arquivo, celular_especifico, celulares)
+        while opcao != 0:
+            if opcao == 1:
+                mostra_detalhes(celular_especifico, celulares)
+
+            elif opcao == 2:
+                remove_celular(nome_arquivo, celular_especifico, celulares)
+                
+            elif opcao == 3:
+                edita_celular(nome_arquivo, celular_especifico, celulares)
+                
+            elif opcao == 4:
+                duplica_celular(nome_arquivo, celular_especifico, celulares)
             
-        elif opcao == 3:
-            edita_celular(nome_arquivo, celular_especifico, celulares)
-            
-        elif opcao == 4:
-            duplica_celular(nome_arquivo, celular_especifico, celulares)
-
-    main()
-
+            input('<enter> to continue...\n')
+            opcao = int(input(menu))
+    
 
 def mostra_detalhes(celular_especifico, celulares):
     for celular in celulares:
@@ -193,6 +198,7 @@ def remove_celular(nome_arquivo, celular_especifico, celulares):
             arquivo.close()
 
             print('Celular removido da lista com sucesso!')
+            break
 
 
 def edita_celular(nome_arquivo, celular_especifico, celulares):
@@ -200,51 +206,56 @@ def edita_celular(nome_arquivo, celular_especifico, celulares):
 
     for celular in celulares:
         if celular_especifico == celular:
-            
             opcao = int(input(menu))
             
             while opcao != 0:
-
                 if opcao == 1:
+                    print(f"Nome atual: {celular['nome']}")
                     novo_nome = input('Digite o novo nome: ')
                     celular['nome'] = novo_nome
-                    print('Edição realizada com sucesso!')
-
+                    
                 elif opcao == 2:
+                    print(f"Marca atual: {celular['marca']}")
                     nova_marca = input('Digite a nova marca: ')
                     celular['marca'] = nova_marca
-                    print('Edição realizada com sucesso!')
                     
                 elif opcao == 3:
+                    print(f'Tela atual("): {celular["tela"]}')
                     nova_tela = input('Digite  a nova tela: ')
                     celular['tela'] = nova_tela
-                    print('Edição realizada com sucesso!')
                     
                 elif opcao == 4:
-                    novo_valor = input('Digite o novo nome: ')
+                    print(f"Valor atual(R$): {celular['valor']}")
+                    novo_valor = input('Digite o novo valor: ')
                     celular['valor'] = novo_valor
-                    print('Edição realizada com sucesso!')
+
+                elif opcao == 5:
+                    print(f"Status atual (câmera frontal ): {celular['cam_frontal']}")
+                    nova_cam_frontal = input('Digite a nova câmera frontal (sim/nao): ')
+                    celular['cam_frontal'] = nova_cam_frontal
+                
+                print('\nEdição realizada com sucesso!')
+                input('<enter> to continue...\n')
+                opcao = int(input(menu))
 
             dados = json.dumps(celulares)
             arquivo = open(nome_arquivo, 'w')
             arquivo.write(dados)
             arquivo.close()
 
-    main()
 
-
-
-def duplica_celular(nome_arquivo, celular_especifico, celulares): # Erro!
+def duplica_celular(nome_arquivo, celular_especifico, celulares):
     for celular in celulares:
         if celular_especifico == celular:
             celulares.append(celular)
 
-            dados = json.dumps(celular)
+            dados = json.dumps(celulares)
             arquivo = open(nome_arquivo, 'w')
             arquivo.write(dados)
             arquivo.close()
-
+            
             print('Registro do celular duplicado com sucesso!')
+            break
 
 
 def tela_edicao():
@@ -254,7 +265,7 @@ def tela_edicao():
     menu += '3 - Editar tela\n'
     menu += '4 - Editar valor\n'
     menu += '5 - Editar câmera frontal\n'
-    menu += '0 - Voltar ao menu anterior\n'
+    menu += '0 - Voltar ao menu inicial\n'
     menu += '\nOpção >>> '
 
     return menu
