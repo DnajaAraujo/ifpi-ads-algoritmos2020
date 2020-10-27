@@ -115,7 +115,7 @@ def encontra_celular(buscador, celulares):
 
 
 def mostra_resultados_pesquisa(lista):
-    print(f'\nFoi encontrado {len(lista)} celulares\n')
+    print(f'\nForam encontrados {len(lista)} celulares\n')
 
     if len(lista) > 0:
         for item in lista:
