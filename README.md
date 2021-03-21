@@ -1,5 +1,5 @@
 # Alunos:
--	Dnajá Araújo dos Santos Júnior
+-	Dnajá Araújo dos Santos Júnior\n
   ARQ | BD II | EST II | INT I | PROJ i | SO | ES II
 
 -	Ezequiel Teixeira Costa
@@ -15,13 +15,3 @@
 -	Problema: a necessidade de organização por parte das pessoas que possuem várias atividades durante o dia.
 -	Como resolver: a criação de um sistema web de simples uso que auxilie o usuário a gerenciar as atividades que precisam ser feitas.
 
-
-
-<p align="center">
- <a href="#objetivo">Objetivo</a>
- <a href="#roadmap">Roadmap</a>
- <a href="#tecnologias">Tecnologias</a>
- <a href="#contribuicao">Contribuição</a> 
- <a href="#licenc-a">Licença</a>
- <a href="#autor">Autor</a>
-</p>
