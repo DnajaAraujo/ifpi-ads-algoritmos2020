@@ -1,13 +1,10 @@
 # Alunos:
--	Dnajá Araújo dos Santos Júnior\n
-  ARQ | BD II | EST II | INT I | PROJ i | SO | ES II
-
+-	Dnajá Araújo dos Santos Júnior
 -	Ezequiel Teixeira Costa
--	ARQ | BD II | EST II | INT I | PROJ i | SO | ES II
-
 -	Wictor Gabriel de Aquino Mourão
--	ARQ | BD II | EST II | INT I | PROJ i | SO | ES II
 
+# Disciplinas Envolvidas
+- ARQ | BD II | EST II | INT I | PROJ i | SO | ES II
 
 # Sobre o Projeto:
 -	Nome: Tasks
