@@ -3,8 +3,9 @@
 -	Ezequiel Teixeira Costa
 -	Wictor Gabriel de Aquino Mourão
 
-# Disciplinas Envolvidas
+## Disciplinas Envolvidas:
 - ARQ | BD II | EST II | INT I | PROJ i | SO | ES II
+
 
 # Sobre o Projeto:
 -	Nome: Tasks
